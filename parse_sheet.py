@@ -17,8 +17,6 @@ def sheets_to_df(sheet_id, sheet_tab):
     sheet_name = urllib.parse.quote(sheet_tab)
     url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 
-    print(url)
-
     df = pd.read_csv(url)
 
     return df
@@ -83,8 +81,10 @@ def export_geojson(df):
     gdf = gpd.GeoDataFrame(
         df, geometry=gpd.points_from_xy(df.final_lng, df.final_lat)
     )
-    df.drop(columns=['final_lng', 'final_lat'], inplace=True)
+    gdf.drop(columns=['final_lng', 'final_lat'], inplace=True)
     # gdf.to_json('exports/cr-points.geojson', drop_id=True)
+
+    print(gdf)
 
     os.makedirs('exports', exist_ok=True)
     gdf.to_file('exports/cr-points.geojson', driver="GeoJSON", drop_id=True)

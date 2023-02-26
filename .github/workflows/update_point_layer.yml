@@ -46,7 +46,8 @@ jobs:
         GOOGLE_SHEET_TAB: ${{ vars.GOOGLE_SHEET_TAB }}
         GEOCODIO_API_KEY: ${{ vars.GEOCODIO_API_KEY }}
       run: |
-        echo "${GOOGLE_SHEET_ID}"
-        echo "${GOOGLE_SHEET_TAB}"
-        echo "${GEOCODIO_API_KEY}"
         python parse_sheet.py
+    - uses: mikeal/publish-to-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # BRANCH_NAME: '' #optional defaults to master
