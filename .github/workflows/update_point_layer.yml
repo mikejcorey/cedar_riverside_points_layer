@@ -42,9 +42,9 @@ jobs:
     - name: Update CR map points from Google Sheet
       env:
         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GOOGLE_SHEET_ID: ${{ env.GOOGLE_SHEET_ID }}
-        GOOGLE_SHEET_TAB: ${{ env.GOOGLE_SHEET_TAB }}
-        GEOCODIO_API_KEY: ${{ env.GEOCODIO_API_KEY }}
+        GOOGLE_SHEET_ID: ${{ vars.GOOGLE_SHEET_ID }}
+        GOOGLE_SHEET_TAB: ${{ vars.GOOGLE_SHEET_TAB }}
+        GEOCODIO_API_KEY: ${{ vars.GEOCODIO_API_KEY }}
       run: |
         echo "${GOOGLE_SHEET_ID}"
         python parse_sheet.py
