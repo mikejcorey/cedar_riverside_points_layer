@@ -13,7 +13,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  update_point_layer:
 
     runs-on: ubuntu-latest
 
@@ -34,7 +34,7 @@ jobs:
         GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
         GOOGLE_SHEET_TAB: ${{ secrets.GOOGLE_SHEET_TAB }}
         GEOCODIO_API_KEY: ${{ secrets.GEOCODIO_API_KEY }}
-        run |
+        run: |
           echo "GOOGLE_SHEET_ID={GOOGLE_SHEET_ID}" >> .env
           echo "GOOGLE_SHEET_TAB={GOOGLE_SHEET_TAB}" >> .env
           echo "GEOCODIO_API_KEY={GEOCODIO_API_KEY}" >> .env
