@@ -17,6 +17,8 @@ def sheets_to_df(sheet_id, sheet_tab):
     sheet_name = urllib.parse.quote(sheet_tab)
     url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 
+    print(url)
+
     df = pd.read_csv(url)
 
     return df
