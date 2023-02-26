@@ -29,15 +29,15 @@ jobs:
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Write .env file for Python
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
-        GOOGLE_SHEET_TAB: ${{ secrets.GOOGLE_SHEET_TAB }}
-        GEOCODIO_API_KEY: ${{ secrets.GEOCODIO_API_KEY }}
+      # env:
+        # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+        # GOOGLE_SHEET_TAB: ${{ secrets.GOOGLE_SHEET_TAB }}
+        # GEOCODIO_API_KEY: ${{ secrets.GEOCODIO_API_KEY }}
       run: |
-        echo "GOOGLE_SHEET_ID={GOOGLE_SHEET_ID}" >> .env
-        echo "GOOGLE_SHEET_TAB={GOOGLE_SHEET_TAB}" >> .env
-        echo "GEOCODIO_API_KEY={GEOCODIO_API_KEY}" >> .env
+        echo "GOOGLE_SHEET_ID=${{ secrets.GOOGLE_SHEET_ID }}" >> .env
+        echo "GOOGLE_SHEET_TAB=${{ secrets.GOOGLE_SHEET_TAB }}" >> .env
+        echo "GEOCODIO_API_KEY=${{ secrets.GEOCODIO_API_KEY }}" >> .env
     - name: Update CR map points from Google Sheet
       run: |
         python parse_sheet.py
