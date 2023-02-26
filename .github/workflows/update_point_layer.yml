@@ -40,11 +40,11 @@ jobs:
     #     echo "GOOGLE_SHEET_TAB=${{ secrets.GOOGLE_SHEET_TAB }}" >> .env
     #     echo "GEOCODIO_API_KEY=${{ secrets.GEOCODIO_API_KEY }}" >> .env
     - name: Update CR map points from Google Sheet
-      # env:
-      #   # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   GOOGLE_SHEET_ID: ${{ env.GOOGLE_SHEET_ID }}
-      #   GOOGLE_SHEET_TAB: ${{ env.GOOGLE_SHEET_TAB }}
-      #   GEOCODIO_API_KEY: ${{ env.GEOCODIO_API_KEY }}
+      env:
+        # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GOOGLE_SHEET_ID: ${{ env.GOOGLE_SHEET_ID }}
+        GOOGLE_SHEET_TAB: ${{ env.GOOGLE_SHEET_TAB }}
+        GEOCODIO_API_KEY: ${{ env.GEOCODIO_API_KEY }}
       run: |
-        echo "$GOOGLE_SHEET_ID"
+        echo "${GOOGLE_SHEET_ID}"
         python parse_sheet.py
