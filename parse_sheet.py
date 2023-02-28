@@ -1,4 +1,5 @@
 import os
+import re
 import urllib
 
 import pandas as pd
@@ -21,7 +22,12 @@ def sheets_to_df(sheet_id, sheet_tab):
 
     return df
 
+# def get_existing_geocodes():
+#     gpd.read_file('exports/cr-points.geojson')
+
 def geocode_rows(df):
+    # TODO: Save copy of cached geocoding to save geocode credits
+
     ungeo_df = df.loc[df['center_lng'].isna()]
 
     if ungeo_df.shape[0] > 0:
@@ -76,6 +82,18 @@ def geocode_rows(df):
 
         return final_df
 
+def generate_image_link(row):
+
+    if row['image_url_direct']:
+        row['web_img_final'] = row['image_url_direct']
+
+    elif row['image_drive_link'] != '':
+        img_id = re.search(r'/d/(.+)/view', row['image_drive_link'])
+        if img_id:
+            row['web_img_final'] = f"https://drive.google.com/uc?id={img_id.group(1)}"
+
+    return row
+
 def export_geojson(df):
 
     gdf = gpd.GeoDataFrame(
@@ -94,6 +112,11 @@ if __name__ == "__main__":
 
     # Geocode rows without lat/lng coordinates
     df = geocode_rows(df)
+
+    # translate image links
+    df = df.fillna(value='')
+    df['web_img_final'] = ''
+    df = df.apply(generate_image_link, axis=1)
 
     # Convert to GeoJSON
     geojson = export_geojson(df)
