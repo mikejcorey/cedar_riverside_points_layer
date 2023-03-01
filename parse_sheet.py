@@ -111,7 +111,7 @@ if __name__ == "__main__":
     df = sheets_to_df(GOOGLE_SHEET_ID, GOOGLE_SHEET_TAB)
 
     # Drop rows with no address, intersection or lat/lng
-    df = df.dropna(subset=['address', 'intersection', 'lng'])
+    df = df.dropna(subset=['address', 'intersection', 'center_lng'])
 
     # Geocode rows without lat/lng coordinates
     df = geocode_rows(df)
