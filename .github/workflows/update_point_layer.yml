@@ -8,8 +8,8 @@ on:
     branches: [ "main" ]
   # pull_request:
   #   branches: [ "main" ]
-  # schedule:
-  #   - cron:  '*/15 * * * *' # 8am daily. Ref https://crontab.guru/examples.html
+  schedule:
+    - cron:  '*/15 * * * *' # 8am daily. Ref https://crontab.guru/examples.html
 
 permissions:
   contents: write
