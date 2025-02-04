@@ -91,7 +91,8 @@ def generate_image_link(row):
         img_id = re.search(r'/d/(.+)/view', row['image_drive_link'])
         if img_id:
             # row['web_img_final'] = f"https://drive.google.com/uc?id={img_id.group(1)}"
-            row['web_img_final'] = f"https://drive.google.com/thumbnail?id={img_id.group(1)}&sz=s4000"
+            # row['web_img_final'] = f"https://drive.google.com/thumbnail?id={img_id.group(1)}&sz=s4000"
+            row['web_img_final'] = f"https://drive.google.com/file/d/{img_id.group(1)}/preview"
 
     return row
 
