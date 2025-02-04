@@ -90,7 +90,8 @@ def generate_image_link(row):
     elif row['image_drive_link'] != '':
         img_id = re.search(r'/d/(.+)/view', row['image_drive_link'])
         if img_id:
-            row['web_img_final'] = f"https://drive.google.com/uc?id={img_id.group(1)}"
+            # row['web_img_final'] = f"https://drive.google.com/uc?id={img_id.group(1)}"
+            row['web_img_final'] = f"https://drive.google.com/thumbnail?id={img_id.group(1)}&sz=s4000"
 
     return row
 
@@ -105,7 +106,8 @@ def export_geojson(df):
     print(gdf)
 
     os.makedirs('exports', exist_ok=True)
-    gdf.to_file('exports/cr-points.geojson', driver="GeoJSON", drop_id=True)
+    # gdf.to_file('exports/cr-points.geojson', driver="GeoJSON", drop_id=True)
+    gdf.to_file('exports/cr-points.geojson', driver="GeoJSON")
 
 if __name__ == "__main__":
     df = sheets_to_df(GOOGLE_SHEET_ID, GOOGLE_SHEET_TAB)

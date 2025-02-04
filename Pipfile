@@ -5,9 +5,9 @@ name = "pypi"
 
 [packages]
 pandas = "*"
-geopandas = "*"
 pygeocodio = "*"
 python-dotenv = "*"
+geopandas = "*"
 
 [dev-packages]
 
